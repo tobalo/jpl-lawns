@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.swiper-pagination-bullet {
+  @apply bg-green-600 opacity-50;
+}
+
+.swiper-pagination-bullet-active {
+  @apply bg-green-600 opacity-100;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  @apply hidden md:flex items-center justify-center;
+}
+
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  @apply hidden;
+}
