@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback } from 'react';
+import React, { useState, useRef, useCallback, useEffect } from 'react';
 import { MoveHorizontal, Leaf, Instagram } from 'lucide-react';
 
 interface BeforeAfterPair {
@@ -52,10 +52,21 @@ const residentialItems: ResidentialItem[] = [
 ];
 
 /* ── Before / After Slider ────────────────────────────────────────── */
+/* Bypasses React state during drag — updates clip-path + handle       */
+/* position directly on the DOM for zero-overhead 120fps smoothness.   */
 
-function BeforeAfterSlider({ before, after }: { before: string; after: string }) {
-  const [position, setPosition] = useState(50);
+function BeforeAfterSlider({
+  before,
+  after,
+  lazy = false,
+}: {
+  before: string;
+  after: string;
+  lazy?: boolean;
+}) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const clipRef = useRef<HTMLDivElement>(null);
+  const handleRef = useRef<HTMLDivElement>(null);
 
   const getPercent = useCallback((clientX: number) => {
     const el = containerRef.current;
@@ -64,12 +75,21 @@ function BeforeAfterSlider({ before, after }: { before: string; after: string })
     return Math.max(3, Math.min(97, ((clientX - rect.left) / rect.width) * 100));
   }, []);
 
+  const updateSlider = useCallback((percent: number) => {
+    if (clipRef.current) {
+      clipRef.current.style.clipPath = `inset(0 ${100 - percent}% 0 0)`;
+    }
+    if (handleRef.current) {
+      handleRef.current.style.left = `${percent}%`;
+    }
+  }, []);
+
   const handleClick = useCallback(
     (e: React.MouseEvent) => {
       if ((e.target as HTMLElement).closest('[data-slider-handle]')) return;
-      setPosition(getPercent(e.clientX));
+      updateSlider(getPercent(e.clientX));
     },
-    [getPercent]
+    [getPercent, updateSlider]
   );
 
   const handleDragStart = useCallback(
@@ -78,7 +98,7 @@ function BeforeAfterSlider({ before, after }: { before: string; after: string })
       const target = e.currentTarget as HTMLElement;
       target.setPointerCapture(e.pointerId);
 
-      const onMove = (ev: PointerEvent) => setPosition(getPercent(ev.clientX));
+      const onMove = (ev: PointerEvent) => updateSlider(getPercent(ev.clientX));
       const onUp = () => {
         target.removeEventListener('pointermove', onMove);
         target.removeEventListener('pointerup', onUp);
@@ -89,7 +109,7 @@ function BeforeAfterSlider({ before, after }: { before: string; after: string })
       target.addEventListener('pointerup', onUp);
       target.addEventListener('pointercancel', onUp);
     },
-    [getPercent]
+    [getPercent, updateSlider]
   );
 
   return (
@@ -103,37 +123,40 @@ function BeforeAfterSlider({ before, after }: { before: string; after: string })
         src={after}
         alt="After transformation"
         className="absolute inset-0 w-full h-full object-cover"
+        loading={lazy ? 'lazy' : undefined}
+        decoding="async"
         draggable={false}
       />
 
       {/* Before image — top layer, clipped to left */}
       <div
-        className="absolute inset-0"
-        style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}
+        ref={clipRef}
+        className="absolute inset-0 will-change-[clip-path]"
+        style={{ clipPath: 'inset(0 50% 0 0)' }}
       >
         <img
           src={before}
           alt="Before transformation"
           className="w-full h-full object-cover"
+          loading={lazy ? 'lazy' : undefined}
+          decoding="async"
           draggable={false}
         />
       </div>
 
-      {/* Draggable handle */}
+      {/* Draggable handle — direct DOM positioning, no React state */}
       <div
+        ref={handleRef}
         data-slider-handle
         className="absolute top-0 bottom-0 z-20 cursor-col-resize"
         style={{
-          left: `${position}%`,
+          left: '50%',
           transform: 'translateX(-50%)',
           width: '44px',
           touchAction: 'none',
         }}
         onPointerDown={handleDragStart}
         role="slider"
-        aria-valuenow={Math.round(position)}
-        aria-valuemin={0}
-        aria-valuemax={100}
         aria-label="Drag to compare before and after"
         tabIndex={0}
       >
@@ -154,11 +177,27 @@ function BeforeAfterSlider({ before, after }: { before: string; after: string })
   );
 }
 
+/* ── Image preloader ──────────────────────────────────────────────── */
+
+function usePreloadImages(srcs: string[]) {
+  useEffect(() => {
+    srcs.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+    });
+  }, [srcs]);
+}
+
 /* ── Section ──────────────────────────────────────────────────────── */
 
 export default function Projects() {
   const [activePairIndex, setActivePairIndex] = useState(0);
   const activePair = whitestonePairs[activePairIndex];
+
+  // Preload the next pair so thumbnail clicks feel instant
+  const nextIndex = (activePairIndex + 1) % whitestonePairs.length;
+  const nextPair = whitestonePairs[nextIndex];
+  usePreloadImages([nextPair.before, nextPair.after]);
 
   return (
     <section id="projects" className="py-20 bg-gradient-to-b from-green-900 to-green-950">
@@ -213,6 +252,8 @@ export default function Projects() {
                 src={pair.after}
                 alt={pair.label}
                 className="w-full h-full object-cover"
+                loading="lazy"
+                decoding="async"
               />
               <span className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/70 to-transparent px-1.5 pb-1.5 pt-4">
                 <span className="text-[10px] text-white/90 font-medium leading-tight block">
@@ -234,7 +275,7 @@ export default function Projects() {
                 <h4 className="text-lg font-semibold text-white mb-3">
                   {item.name}
                 </h4>
-                <BeforeAfterSlider before={item.before} after={item.after} />
+                <BeforeAfterSlider before={item.before} after={item.after} lazy />
                 <p className="text-sm text-green-200/50 mt-3 line-clamp-3">
                   {item.description}
                 </p>
