@@ -3,7 +3,6 @@ import Hero from './components/Hero';
 import Services from './components/Services';
 import ImageCarousel from './components/ImageCarousel';
 import Projects from './components/Projects';
-import InstagramFeed from './components/InstagramFeed';
 import About from './components/About';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
@@ -15,7 +14,6 @@ function App() {
       <Services />
       <Projects />
       <ImageCarousel />
-      <InstagramFeed />
       <About />
       <Contact />
       <Footer />
