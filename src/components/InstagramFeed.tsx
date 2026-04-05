@@ -9,20 +9,20 @@ import 'swiper/css/pagination';
 const portfolioItems = [
   {
     id: 1,
-    beforeImage: '/images/before-1.jpg',
-    afterImage: '/images/after-1.jpg',
+    beforeImage: '/images/before-1.webp',
+    afterImage: '/images/after-1.webp',
     description: 'Custom patio extension with ambient string lighting, featuring a spacious concrete pad perfect for outdoor dining and entertaining. Complemented by strategic landscaping and mulched borders.'
   },
   {
     id: 2,
-    beforeImage: '/images/before-2.jpg',
-    afterImage: '/images/after-2.jpg',
+    beforeImage: '/images/before-2.webp',
+    afterImage: '/images/after-2.webp',
     description: 'Complete backyard transformation featuring new sod installation, cypress trees along the fence line, custom stone edging, and mulched garden beds. Enhanced with professional landscape lighting.'
   },
   {
     id: 3,
-    beforeImage: '/images/misc2.jpg',
-    afterImage: '/images/misc4.jpg',
+    beforeImage: '/images/misc2.webp',
+    afterImage: '/images/misc4.webp',
     description: 'Comprehensive landscape design including new patio installation, professional lighting, and custom hardscaping elements for a cohesive outdoor living space.'
   }
 ];

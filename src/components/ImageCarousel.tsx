@@ -8,13 +8,13 @@ import 'swiper/css/pagination';
 import 'swiper/css/effect-fade';
 
 const latestImages = [
-  { id: 1, src: '/work-images/portfolio-0.jpeg', alt: 'Recent landscape project showcase' },
-  { id: 2, src: '/work-images/portfolio-1.jpeg', alt: 'Beautiful garden transformation' },
-  { id: 3, src: '/work-images/portfolio-3.jpeg', alt: 'Custom outdoor living space' },
-  { id: 4, src: '/work-images/portfolio-4.jpeg', alt: 'Professional lawn care results' },
-  { id: 5, src: '/work-images/portfolio-5.jpeg', alt: 'Elegant landscape design' },
-  { id: 6, src: '/work-images/portfolio-6.jpeg', alt: 'Family-friendly backyard renovation' },
-  { id: 7, src: '/work-images/portfolio-7.jpeg', alt: 'Sustainable landscaping solution' }
+  { id: 1, src: '/work-images/portfolio-0.webp', alt: 'Recent landscape project showcase' },
+  { id: 2, src: '/work-images/portfolio-1.webp', alt: 'Beautiful garden transformation' },
+  { id: 3, src: '/work-images/portfolio-3.webp', alt: 'Custom outdoor living space' },
+  { id: 4, src: '/work-images/portfolio-4.webp', alt: 'Professional lawn care results' },
+  { id: 5, src: '/work-images/portfolio-5.webp', alt: 'Elegant landscape design' },
+  { id: 6, src: '/work-images/portfolio-6.webp', alt: 'Family-friendly backyard renovation' },
+  { id: 7, src: '/work-images/portfolio-7.webp', alt: 'Sustainable landscaping solution' }
 ];
 
 export default function ImageCarousel() {

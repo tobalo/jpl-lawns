@@ -2,6 +2,7 @@ import React from 'react';
 import Hero from './components/Hero';
 import Services from './components/Services';
 import ImageCarousel from './components/ImageCarousel';
+import Projects from './components/Projects';
 import InstagramFeed from './components/InstagramFeed';
 import About from './components/About';
 import Contact from './components/Contact';
@@ -12,6 +13,7 @@ function App() {
     <div className="min-h-screen bg-white">
       <Hero />
       <Services />
+      <Projects />
       <ImageCarousel />
       <InstagramFeed />
       <About />
