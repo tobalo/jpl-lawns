@@ -1,76 +1,74 @@
 import React from 'react';
 import { Award, Users, Calendar } from 'lucide-react';
+import { Reveal } from './Reveal';
+import { SeedAnimation } from './SeedAnimation';
 
 const stats = [
-  {
-    label: 'Years Experience',
-    value: '7+',
-    icon: Calendar,
-  },
-  {
-    label: 'Projects Completed',
-    value: '500+',
-    icon: Award,
-  },
-  {
-    label: 'Team Members',
-    value: '10+',
-    icon: Users,
-  },
+  { label: 'Years Experience', value: '10+', icon: Calendar },
+  { label: 'Projects Completed', value: '500+', icon: Award },
+  { label: 'Team Members', value: '10+', icon: Users },
 ];
 
 export default function About() {
   return (
-    <section id="about" className="py-20 bg-green-50">
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">About JP Landscapes</h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Creating beautiful, sustainable landscapes since 2016. Our passion for excellence and 
-            attention to detail sets us apart.
-          </p>
-        </div>
+    <section id="about" className="py-20 sm:py-28 bg-sage-50">
+      <div className="max-w-6xl mx-auto px-6">
+        <Reveal>
+          <div className="text-center mb-14 sm:mb-20">
+            <span className="inline-block text-xs font-body font-medium tracking-[0.2em] uppercase text-terra-400 mb-4">
+              Who We Are
+            </span>
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-semibold text-bark-700 leading-tight">
+              About JP Landscapes
+            </h2>
+            <div className="mt-5 mx-auto w-12 h-px bg-terra-300" />
+          </div>
+        </Reveal>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-          {stats.map((stat, index) => (
-            <div
-              key={index}
-              className="text-center p-6 bg-white rounded-xl shadow-lg"
-            >
-              <div className="flex justify-center mb-4">
-                <stat.icon className="h-8 w-8 text-green-600" />
+        {/* Stats */}
+        <div className="grid grid-cols-3 gap-3 sm:gap-6 mb-14 sm:mb-20">
+          {stats.map((stat, i) => (
+            <Reveal key={i} delay={i * 100}>
+              <div className="text-center p-4 sm:p-8 bg-white rounded-2xl border border-sage-100 h-full">
+                <stat.icon className="w-6 h-6 sm:w-7 sm:h-7 text-sage-500 mx-auto mb-3" />
+                <div className="font-display text-2xl sm:text-4xl font-bold text-bark-700 mb-1">
+                  {stat.value}
+                </div>
+                <div className="font-body text-xs sm:text-sm text-bark-300">
+                  {stat.label}
+                </div>
               </div>
-              <div className="text-3xl font-bold text-gray-900 mb-2">{stat.value}</div>
-              <div className="text-gray-600">{stat.label}</div>
-            </div>
+            </Reveal>
           ))}
         </div>
 
-        <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-          <div className="md:flex">
-            <div className="md:w-1/2">
-              <img
-                src="https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?auto=format&fit=crop&q=80"
-                alt="Team at work"
-                className="h-full w-full object-cover"
-              />
-            </div>
-            <div className="p-8 md:w-1/2">
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Our Story</h3>
-              <p className="text-gray-600 mb-4">
-                JP Landscapes began with a simple mission: to create exceptional outdoor spaces 
-                that bring joy to our clients. Over the years, we've grown into a full-service 
-                landscaping company, but our commitment to quality and customer satisfaction 
-                remains unchanged.
-              </p>
-              <p className="text-gray-600">
-                Our team of certified professionals combines creativity with technical expertise 
-                to deliver outstanding results. We pride ourselves on sustainable practices and 
-                using the latest innovations in landscape design and maintenance.
-              </p>
+        {/* Story */}
+        <Reveal delay={200}>
+          <div className="bg-white rounded-2xl border border-sage-100 overflow-hidden">
+            <div className="md:flex">
+              <div className="md:w-1/2">
+                <SeedAnimation />
+              </div>
+              <div className="p-8 sm:p-10 md:p-12 md:w-1/2 flex flex-col justify-center">
+                <h3 className="font-display text-2xl sm:text-3xl font-semibold text-bark-700 mb-5">
+                  Our Story
+                </h3>
+                <p className="font-body text-bark-300 leading-relaxed mb-4">
+                  JP Landscapes began with a simple mission: to create exceptional outdoor spaces
+                  that bring joy to families across the Dallas-Fort Worth area. Since 2016, we've grown
+                  from a small family operation into a full-service landscaping company serving residential
+                  and commercial clients throughout the DFW metroplex.
+                </p>
+                <p className="font-body text-bark-300 leading-relaxed">
+                  Our team of certified professionals combines creativity with technical expertise
+                  to deliver outstanding results. From HOA community renovations to backyard
+                  transformations, we pride ourselves on sustainable practices and deep knowledge
+                  of North Texas soil, climate, and native plant species.
+                </p>
+              </div>
             </div>
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

@@ -2,10 +2,403 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%2316a34a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z'/%3E%3Cpath d='M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12'/%3E%3C/svg%3E" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%232C4A3B' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z'/%3E%3Cpath d='M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12'/%3E%3C/svg%3E" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="JP Landscapes - Professional landscaping services including design, maintenance, planting, hardscaping, irrigation systems, and lighting design." />
-    <title>JP Landscapes | Professional Expert Landscaping Services</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+    <!-- Primary Meta Tags -->
+    <title>JP Landscapes | DFW & North Texas Landscaping Services</title>
+    <meta name="description" content="JP Landscapes LLC provides professional landscaping, landscape design, hardscaping, irrigation, planting, lighting, and maintenance across Dallas-Fort Worth and North Texas. Serving Dallas, Fort Worth, Arlington, Plano, Frisco, McKinney, Allen, Mansfield, and nearby DFW communities." />
+    <meta name="keywords" content="DFW landscaping, North Texas landscaping, Dallas landscaper, Fort Worth landscaping, landscape design Dallas, hardscaping DFW, irrigation installation Dallas Fort Worth, lawn maintenance North Texas, Frisco landscaper, Plano landscaper, McKinney landscaping" />
+    <meta name="author" content="JP Landscapes, LLC" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <link rel="canonical" href="https://jp-lawns.com/" />
+    <meta name="theme-color" content="#2C4A3B" />
+
+    <!-- Geo Meta Tags -->
+    <meta name="geo.region" content="US-TX" />
+    <meta name="geo.placename" content="Dallas-Fort Worth" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://jp-lawns.com/" />
+    <meta property="og:title" content="JP Landscapes | DFW & North Texas Landscaping Services" />
+    <meta property="og:description" content="Family-owned landscaping company serving Dallas-Fort Worth and North Texas since 2016. Landscape design, maintenance, hardscaping, irrigation, planting, and lighting." />
+    <meta property="og:image" content="https://jp-lawns.com/work-images/portfolio-0.webp" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="JP Landscapes — Professional landscaping project showcase in Dallas-Fort Worth" />
+    <meta property="og:site_name" content="JP Landscapes" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="JP Landscapes | DFW & North Texas Landscaping Services" />
+    <meta name="twitter:description" content="Family-owned landscaping company serving Dallas-Fort Worth and North Texas since 2016. Landscape design, maintenance, hardscaping, irrigation, planting, and lighting." />
+    <meta name="twitter:image" content="https://jp-lawns.com/work-images/portfolio-0.webp" />
+    <meta name="twitter:image:alt" content="JP Landscapes — Professional landscaping project showcase in Dallas-Fort Worth" />
+
+    <!-- JSON-LD: LocalBusiness (Primary Entity) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LandscapingBusiness",
+      "@id": "https://jp-lawns.com/#organization",
+      "name": "JP Landscapes, LLC",
+      "alternateName": ["JP Landscapes", "JP Lawns"],
+      "url": "https://jp-lawns.com",
+      "image": "https://jp-lawns.com/work-images/portfolio-0.webp",
+      "description": "Family-owned professional landscaping company serving the Dallas-Fort Worth area since 2016. Three generations of expertise in landscape design, garden maintenance, hardscaping, irrigation systems, and lighting design. Over 500 projects completed.",
+      "slogan": "Three generations of expertise",
+      "foundingDate": "2016",
+      "numberOfEmployees": {
+        "@type": "QuantitativeValue",
+        "minValue": 10
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressRegion": "TX",
+        "addressCountry": "US"
+      },
+      "areaServed": [
+        {
+          "@type": "AdministrativeArea",
+          "name": "Dallas-Fort Worth Metroplex"
+        },
+        {
+          "@type": "City",
+          "name": "Dallas",
+          "containedInPlace": { "@type": "State", "name": "Texas" }
+        },
+        {
+          "@type": "City",
+          "name": "Fort Worth",
+          "containedInPlace": { "@type": "State", "name": "Texas" }
+        },
+        {
+          "@type": "City",
+          "name": "Arlington",
+          "containedInPlace": { "@type": "State", "name": "Texas" }
+        },
+        {
+          "@type": "City",
+          "name": "Plano",
+          "containedInPlace": { "@type": "State", "name": "Texas" }
+        },
+        {
+          "@type": "City",
+          "name": "Frisco",
+          "containedInPlace": { "@type": "State", "name": "Texas" }
+        },
+        {
+          "@type": "City",
+          "name": "McKinney",
+          "containedInPlace": { "@type": "State", "name": "Texas" }
+        },
+        {
+          "@type": "City",
+          "name": "Mansfield",
+          "containedInPlace": { "@type": "State", "name": "Texas" }
+        },
+        {
+          "@type": "City",
+          "name": "Allen",
+          "containedInPlace": { "@type": "State", "name": "Texas" }
+        },
+        {
+          "@type": "City",
+          "name": "Prosper",
+          "containedInPlace": { "@type": "State", "name": "Texas" }
+        },
+        {
+          "@type": "City",
+          "name": "Southlake",
+          "containedInPlace": { "@type": "State", "name": "Texas" }
+        },
+        {
+          "@type": "City",
+          "name": "Flower Mound",
+          "containedInPlace": { "@type": "State", "name": "Texas" }
+        },
+        {
+          "@type": "City",
+          "name": "Keller",
+          "containedInPlace": { "@type": "State", "name": "Texas" }
+        },
+        {
+          "@type": "City",
+          "name": "Colleyville",
+          "containedInPlace": { "@type": "State", "name": "Texas" }
+        },
+        {
+          "@type": "City",
+          "name": "The Colony",
+          "containedInPlace": { "@type": "State", "name": "Texas" }
+        },
+        {
+          "@type": "City",
+          "name": "Little Elm",
+          "containedInPlace": { "@type": "State", "name": "Texas" }
+        },
+        {
+          "@type": "City",
+          "name": "Celina",
+          "containedInPlace": { "@type": "State", "name": "Texas" }
+        },
+        {
+          "@type": "City",
+          "name": "Wylie",
+          "containedInPlace": { "@type": "State", "name": "Texas" }
+        },
+        {
+          "@type": "City",
+          "name": "Murphy",
+          "containedInPlace": { "@type": "State", "name": "Texas" }
+        },
+        {
+          "@type": "City",
+          "name": "Sachse",
+          "containedInPlace": { "@type": "State", "name": "Texas" }
+        },
+        {
+          "@type": "City",
+          "name": "Richardson",
+          "containedInPlace": { "@type": "State", "name": "Texas" }
+        },
+        {
+          "@type": "City",
+          "name": "Carrollton",
+          "containedInPlace": { "@type": "State", "name": "Texas" }
+        }
+      ],
+      "telephone": "+1-817-733-6154",
+      "email": "jonparker@jp-lawns.com",
+      "priceRange": "$$",
+      "sameAs": [
+        "https://www.instagram.com/jp_landscapesllc/"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+1-817-733-6154",
+        "email": "jonparker@jp-lawns.com",
+        "contactType": "customer service",
+        "areaServed": "Dallas-Fort Worth Metroplex",
+        "availableLanguage": "English"
+      },
+      "knowsAbout": [
+        "Landscape design in Dallas-Fort Worth",
+        "North Texas planting",
+        "DFW hardscaping",
+        "Irrigation systems",
+        "Outdoor lighting",
+        "Garden maintenance",
+        "HOA landscape renovation",
+        "Commercial landscaping"
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Landscaping Services",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "@id": "https://jp-lawns.com/#landscape-design",
+              "name": "Landscape Design",
+              "description": "Custom landscape design solutions for residential and commercial properties in the Dallas-Fort Worth area, tailored to your space, style, and the North Texas climate."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "@id": "https://jp-lawns.com/#garden-maintenance",
+              "name": "Garden Maintenance",
+              "description": "Year-round garden and lawn maintenance including mowing, edging, pruning, fertilization, weed control, and seasonal cleanup for DFW residential and commercial properties."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "@id": "https://jp-lawns.com/#planting-services",
+              "name": "Planting Services",
+              "description": "Expert plant selection and installation suited to the North Texas climate, featuring native and adaptive species that thrive in the Dallas-Fort Worth growing zone."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "@id": "https://jp-lawns.com/#hardscaping",
+              "name": "Hardscaping",
+              "description": "Professional hardscaping services including custom patios, walkways, retaining walls, outdoor kitchens, and stone work for Dallas-Fort Worth homes and businesses."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "@id": "https://jp-lawns.com/#irrigation-systems",
+              "name": "Irrigation Systems",
+              "description": "Irrigation system design, installation, and repair. Smart watering solutions that conserve water while keeping your DFW landscape healthy through Texas heat."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "@id": "https://jp-lawns.com/#lighting-design",
+              "name": "Lighting Design",
+              "description": "Professional outdoor lighting design and installation including pathway, accent, security, and ambient lighting for patios and outdoor living spaces."
+            }
+          }
+        ]
+      }
+    }
+    </script>
+
+    <!-- JSON-LD: WebSite -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "@id": "https://jp-lawns.com/#website",
+      "name": "JP Landscapes",
+      "alternateName": "JP Landscapes LLC",
+      "url": "https://jp-lawns.com",
+      "publisher": {
+        "@type": "LandscapingBusiness",
+        "@id": "https://jp-lawns.com/#organization"
+      },
+      "inLanguage": "en-US"
+    }
+    </script>
+
+    <!-- JSON-LD: WebPage + Speakable -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "@id": "https://jp-lawns.com/#webpage",
+      "name": "JP Landscapes | DFW & North Texas Landscaping Services",
+      "description": "JP Landscapes LLC provides professional landscaping, landscape design, garden maintenance, hardscaping, irrigation systems, planting, and lighting across Dallas-Fort Worth and North Texas.",
+      "url": "https://jp-lawns.com",
+      "isPartOf": {
+        "@type": "WebSite",
+        "@id": "https://jp-lawns.com/#website"
+      },
+      "about": {
+        "@type": "LandscapingBusiness",
+        "@id": "https://jp-lawns.com/#organization"
+      },
+      "dateModified": "2026-05-29",
+      "inLanguage": "en-US",
+      "speakable": {
+        "@type": "SpeakableSpecification",
+        "cssSelector": ["h1", "meta[name='description']"]
+      }
+    }
+    </script>
+
+    <!-- JSON-LD: BreadcrumbList -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://jp-lawns.com"
+        }
+      ]
+    }
+    </script>
+
+    <!-- JSON-LD: ImageGallery -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ImageGallery",
+      "name": "JP Landscapes Project Portfolio",
+      "description": "Before and after photos of landscaping projects completed by JP Landscapes in the Dallas-Fort Worth area.",
+      "url": "https://jp-lawns.com/#projects",
+      "about": {
+        "@type": "LandscapingBusiness",
+        "@id": "https://jp-lawns.com/#organization"
+      },
+      "image": [
+        {
+          "@type": "ImageObject",
+          "name": "White Stone Heights Community Entrance Renovation",
+          "description": "Complete landscape renovation of subdivision entrance signs with vibrant, professionally designed plantings in the Dallas-Fort Worth area",
+          "contentUrl": "https://jp-lawns.com/work-images/projects/whitestone/ws-after-sign-left.webp"
+        },
+        {
+          "@type": "ImageObject",
+          "name": "Custom Patio Extension",
+          "description": "Custom patio extension with ambient string lighting, spacious concrete pad, and mulched borders",
+          "contentUrl": "https://jp-lawns.com/images/after-1.webp"
+        },
+        {
+          "@type": "ImageObject",
+          "name": "Backyard Renovation",
+          "description": "New sod installation, cypress trees, custom stone edging, mulched garden beds, and landscape lighting",
+          "contentUrl": "https://jp-lawns.com/images/after-2.webp"
+        }
+      ]
+    }
+    </script>
+
+    <!-- JSON-LD: FAQPage -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "@id": "https://jp-lawns.com/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Do you provide landscaping services in Dallas and Fort Worth?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. JP Landscapes serves residential, commercial, and HOA landscaping clients throughout the Dallas-Fort Worth metroplex, including Dallas, Fort Worth, Arlington, Plano, Frisco, McKinney, and nearby North Texas communities."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which North Texas suburbs does JP Landscapes serve?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Common service areas include Plano, Frisco, McKinney, Allen, Prosper, Southlake, Flower Mound, Keller, Colleyville, Mansfield, The Colony, Little Elm, Wylie, Murphy, Sachse, Richardson, and Carrollton."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What landscaping services are best for North Texas yards?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "North Texas landscapes benefit from climate-aware planting, efficient irrigation, durable hardscaping, seasonal maintenance, and lighting plans designed for long, hot summers and shifting soil conditions."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can JP Landscapes handle HOA and commercial common-area work?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. JP Landscapes handles HOA entrances, subdivision signage beds, median islands, commercial planting areas, and residential outdoor living projects across the DFW area."
+          }
+        }
+      ]
+    }
+    </script>
+
     <!-- Netlify Form -->
     <form name="contact" netlify netlify-honeypot="bot-field" hidden>
       <input type="text" name="name" />
@@ -15,7 +408,45 @@
     </form>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <main>
+        <section>
+          <h1>JP Landscapes - DFW & North Texas Landscaping Services</h1>
+          <p>
+            JP Landscapes LLC is a family-owned professional landscaping company serving
+            Dallas-Fort Worth and North Texas since 2016. Services include landscape design,
+            garden maintenance, planting, hardscaping, irrigation systems, outdoor lighting,
+            HOA landscape renovation, and commercial landscaping.
+          </p>
+        </section>
+        <section>
+          <h2>Landscaping Services</h2>
+          <ul>
+            <li>Landscape design for Dallas-Fort Worth homes and businesses</li>
+            <li>Garden maintenance, mowing, edging, pruning, fertilization, and seasonal cleanup</li>
+            <li>Native and adaptive planting services for North Texas soil and heat</li>
+            <li>Hardscaping, patios, walkways, retaining walls, and outdoor living spaces</li>
+            <li>Irrigation system design, installation, repair, and smart watering upgrades</li>
+            <li>Outdoor pathway, accent, security, and ambient lighting design</li>
+          </ul>
+        </section>
+        <section>
+          <h2>Service Areas</h2>
+          <p>
+            Serving Dallas, Fort Worth, Arlington, Plano, Frisco, McKinney, Allen, Prosper,
+            Southlake, Flower Mound, Keller, Colleyville, Mansfield, The Colony, Little Elm,
+            Celina, Wylie, Murphy, Sachse, Richardson, Carrollton, and surrounding DFW
+            communities.
+          </p>
+        </section>
+        <section>
+          <h2>Contact JP Landscapes</h2>
+          <p>Phone: <a href="tel:+18177336154">(817) 733-6154</a></p>
+          <p>Email: <a href="mailto:jonparker@jp-lawns.com">jonparker@jp-lawns.com</a></p>
+          <p>Instagram: <a href="https://www.instagram.com/jp_landscapesllc/">@jp_landscapesllc</a></p>
+        </section>
+      </main>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

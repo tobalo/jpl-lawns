@@ -22,29 +22,29 @@ export default function ContactForm() {
     phone: '',
     message: '',
   });
-  
+
   const [errors, setErrors] = useState<FormErrors>({});
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
 
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
-    
+
     if (!formData.name.trim()) {
       newErrors.name = 'Name is required';
     }
-    
+
     if (!formData.email.trim()) {
       newErrors.email = 'Email is required';
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
       newErrors.email = 'Invalid email format';
     }
-    
+
     if (!formData.phone.trim()) {
       newErrors.phone = 'Phone number is required';
     } else if (!/^\+?[\d\s-]{10,}$/.test(formData.phone)) {
       newErrors.phone = 'Invalid phone number';
     }
-    
+
     if (!formData.message.trim()) {
       newErrors.message = 'Message is required';
     }
@@ -55,23 +55,30 @@ export default function ContactForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!validateForm()) {
       return;
     }
 
     setStatus('submitting');
-    
+
     try {
       const form = e.target as HTMLFormElement;
-      const formData = new FormData(form);
-      
+      const fd = new FormData(form);
+      const body = new URLSearchParams();
+
+      fd.forEach((value, key) => {
+        if (typeof value === 'string') {
+          body.append(key, value);
+        }
+      });
+
       const response = await fetch(form.action, {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(formData as any).toString(),
+        body: body.toString(),
       });
-      
+
       if (response.ok) {
         setStatus('success');
         setFormData({ name: '', email: '', phone: '', message: '' });
@@ -79,7 +86,7 @@ export default function ContactForm() {
       } else {
         throw new Error('Form submission failed');
       }
-    } catch (error) {
+    } catch {
       setStatus('error');
       setTimeout(() => setStatus('idle'), 3000);
     }
@@ -87,20 +94,25 @@ export default function ContactForm() {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
     if (errors[name as keyof FormErrors]) {
-      setErrors(prev => ({ ...prev, [name]: undefined }));
+      setErrors((prev) => ({ ...prev, [name]: undefined }));
     }
   };
 
+  const inputClasses = (field: keyof FormErrors) =>
+    `block w-full rounded-xl border ${
+      errors[field] ? 'border-red-400' : 'border-cream-300'
+    } bg-cream-50 px-4 py-3.5 font-body text-bark-700 placeholder:text-bark-200 focus:outline-none focus:border-forest-600 focus:ring-2 focus:ring-forest-600/10 transition-all duration-200`;
+
   return (
-    <form 
+    <form
       name="contact"
       method="POST"
       data-netlify="true"
       netlify-honeypot="bot-field"
       onSubmit={handleSubmit}
-      className="space-y-6 max-w-lg mx-auto"
+      className="space-y-5"
     >
       <input type="hidden" name="form-name" value="contact" />
       <p className="hidden">
@@ -108,10 +120,11 @@ export default function ContactForm() {
           Don't fill this out if you're human: <input name="bot-field" />
         </label>
       </p>
-      
+
+      {/* Name */}
       <div>
-        <label htmlFor="name" className="block text-sm font-medium text-gray-700">
-          Name *
+        <label htmlFor="name" className="block font-body text-sm font-medium text-bark-500 mb-1.5">
+          Name <span className="text-terra-400">*</span>
         </label>
         <input
           type="text"
@@ -119,95 +132,96 @@ export default function ContactForm() {
           name="name"
           value={formData.name}
           onChange={handleChange}
-          className={`mt-1 block w-full rounded-md shadow-sm ${
-            errors.name ? 'border-red-500' : 'border-gray-300'
-          } focus:border-green-500 focus:ring focus:ring-green-200`}
+          className={inputClasses('name')}
+          placeholder="Your full name"
         />
-        {errors.name && <p className="mt-1 text-sm text-red-500">{errors.name}</p>}
+        {errors.name && <p className="mt-1.5 text-sm font-body text-red-500">{errors.name}</p>}
       </div>
 
-      <div>
-        <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-          Email *
-        </label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-          className={`mt-1 block w-full rounded-md shadow-sm ${
-            errors.email ? 'border-red-500' : 'border-gray-300'
-          } focus:border-green-500 focus:ring focus:ring-green-200`}
-        />
-        {errors.email && <p className="mt-1 text-sm text-red-500">{errors.email}</p>}
+      {/* Email + Phone row */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <div>
+          <label htmlFor="email" className="block font-body text-sm font-medium text-bark-500 mb-1.5">
+            Email <span className="text-terra-400">*</span>
+          </label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            className={inputClasses('email')}
+            placeholder="Your email"
+          />
+          {errors.email && <p className="mt-1.5 text-sm font-body text-red-500">{errors.email}</p>}
+        </div>
+
+        <div>
+          <label htmlFor="phone" className="block font-body text-sm font-medium text-bark-500 mb-1.5">
+            Phone <span className="text-terra-400">*</span>
+          </label>
+          <input
+            type="tel"
+            id="phone"
+            name="phone"
+            value={formData.phone}
+            onChange={handleChange}
+            className={inputClasses('phone')}
+            placeholder="(555) 123-4567"
+          />
+          {errors.phone && <p className="mt-1.5 text-sm font-body text-red-500">{errors.phone}</p>}
+        </div>
       </div>
 
+      {/* Message */}
       <div>
-        <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
-          Phone *
+        <label htmlFor="message" className="block font-body text-sm font-medium text-bark-500 mb-1.5">
+          Project Details <span className="text-terra-400">*</span>
         </label>
-        <input
-          type="tel"
-          id="phone"
-          name="phone"
-          value={formData.phone}
-          onChange={handleChange}
-          className={`mt-1 block w-full rounded-md shadow-sm ${
-            errors.phone ? 'border-red-500' : 'border-gray-300'
-          } focus:border-green-500 focus:ring focus:ring-green-200`}
-        />
-        {errors.phone && <p className="mt-1 text-sm text-red-500">{errors.phone}</p>}
-      </div>
-
-      <div>
-        <label htmlFor="message" className="block text-sm font-medium text-gray-700">
-          Project Details *
-        </label>
-        <p className="text-sm text-gray-500 mb-2">
-          Please provide as much detail about your landscape project as possible for streamlined quoting/estimation. Feel free to include photo links if needed.
+        <p className="font-body text-xs text-bark-200 mb-2">
+          Include details like area size, current condition, desired features, and timeline.
         </p>
         <textarea
           id="message"
           name="message"
-          rows={6}
+          rows={5}
           value={formData.message}
           onChange={handleChange}
-          className={`mt-1 block w-full rounded-md shadow-sm ${
-            errors.message ? 'border-red-500' : 'border-gray-300'
-          } focus:border-green-500 focus:ring focus:ring-green-200`}
-          placeholder="Describe your project, including details like: size of area, current condition, desired features, timeline, and any specific requirements."
+          className={inputClasses('message')}
+          placeholder="Tell us about your landscape project..."
         />
-        {errors.message && <p className="mt-1 text-sm text-red-500">{errors.message}</p>}
+        {errors.message && <p className="mt-1.5 text-sm font-body text-red-500">{errors.message}</p>}
       </div>
 
+      {/* Submit */}
       <button
         type="submit"
         disabled={status === 'submitting'}
-        className={`w-full flex items-center justify-center py-3 px-4 rounded-md text-white font-medium ${
+        className={`w-full flex items-center justify-center gap-2 py-4 px-6 rounded-xl font-body font-medium text-base transition-all duration-300 ${
           status === 'submitting'
-            ? 'bg-gray-400 cursor-not-allowed'
-            : 'bg-green-600 hover:bg-green-700'
-        } transition-colors duration-200`}
+            ? 'bg-bark-200 text-bark-400 cursor-not-allowed'
+            : 'bg-terra-400 hover:bg-terra-500 active:bg-terra-600 text-white hover:shadow-lg hover:shadow-terra-300/25 active:scale-[0.98]'
+        }`}
       >
         {status === 'submitting' ? (
           'Sending...'
         ) : (
           <>
             Send Message
-            <Send className="ml-2 h-4 w-4" />
+            <Send className="w-4 h-4" />
           </>
         )}
       </button>
 
+      {/* Status messages */}
       {status === 'success' && (
-        <div className="p-4 bg-green-100 text-green-700 rounded-md">
+        <div className="p-4 bg-sage-50 border border-sage-200 text-forest-700 rounded-xl font-body text-sm">
           Thank you for your message! We'll get back to you soon.
         </div>
       )}
 
       {status === 'error' && (
-        <div className="p-4 bg-red-100 text-red-700 rounded-md">
+        <div className="p-4 bg-red-50 border border-red-200 text-red-700 rounded-xl font-body text-sm">
           There was an error sending your message. Please try again.
         </div>
       )}
