@@ -1,4 +1,3 @@
-import React from 'react';
 import { MapPin, CheckCircle2 } from 'lucide-react';
 import { Reveal } from './Reveal';
 
@@ -64,7 +63,7 @@ export default function ServiceAreas() {
               DFW & North Texas Landscaping
             </h2>
             <div className="mt-5 mx-auto w-12 h-px bg-terra-300" />
-            <p className="font-body text-base sm:text-lg text-bark-300 max-w-2xl mx-auto mt-5">
+            <p className="font-body text-base sm:text-lg text-bark-400 max-w-2xl mx-auto mt-5">
               JP Landscapes provides professional landscape design, hardscaping, irrigation,
               planting, lighting, and maintenance services across Dallas-Fort Worth and nearby
               North Texas communities.
@@ -125,7 +124,7 @@ export default function ServiceAreas() {
                   <h3 className="font-display text-xl font-semibold text-bark-700 mb-2">
                     {faq.question}
                   </h3>
-                  <p className="font-body text-sm sm:text-base text-bark-300 leading-relaxed">
+                  <p className="font-body text-sm sm:text-base text-bark-400 leading-relaxed">
                     {faq.answer}
                   </p>
                 </div>

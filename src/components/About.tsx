@@ -1,4 +1,3 @@
-import React from 'react';
 import { Award, Users, Calendar } from 'lucide-react';
 import { Reveal } from './Reveal';
 import { SeedAnimation } from './SeedAnimation';
@@ -34,7 +33,7 @@ export default function About() {
                 <div className="font-display text-2xl sm:text-4xl font-bold text-bark-700 mb-1">
                   {stat.value}
                 </div>
-                <div className="font-body text-xs sm:text-sm text-bark-300">
+                <div className="font-body text-xs sm:text-sm text-bark-400">
                   {stat.label}
                 </div>
               </div>
@@ -53,13 +52,13 @@ export default function About() {
                 <h3 className="font-display text-2xl sm:text-3xl font-semibold text-bark-700 mb-5">
                   Our Story
                 </h3>
-                <p className="font-body text-bark-300 leading-relaxed mb-4">
+                <p className="font-body text-bark-400 leading-relaxed mb-4">
                   JP Landscapes began with a simple mission: to create exceptional outdoor spaces
                   that bring joy to families across the Dallas-Fort Worth area. Since 2016, we've grown
                   from a small family operation into a full-service landscaping company serving residential
                   and commercial clients throughout the DFW metroplex.
                 </p>
-                <p className="font-body text-bark-300 leading-relaxed">
+                <p className="font-body text-bark-400 leading-relaxed">
                   Our team of certified professionals combines creativity with technical expertise
                   to deliver outstanding results. From HOA community renovations to backyard
                   transformations, we pride ourselves on sustainable practices and deep knowledge

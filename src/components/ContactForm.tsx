@@ -109,7 +109,7 @@ export default function ContactForm() {
     <form
       name="contact"
       method="POST"
-      action="/"
+      action="/__forms.html"
       data-netlify="true"
       netlify-honeypot="bot-field"
       onSubmit={handleSubmit}
@@ -135,8 +135,14 @@ export default function ContactForm() {
           onChange={handleChange}
           className={inputClasses('name')}
           placeholder="Your full name"
+          aria-invalid={!!errors.name}
+          aria-describedby={errors.name ? 'name-error' : undefined}
         />
-        {errors.name && <p className="mt-1.5 text-sm font-body text-red-500">{errors.name}</p>}
+        {errors.name && (
+          <p id="name-error" className="mt-1.5 text-sm font-body text-red-500">
+            {errors.name}
+          </p>
+        )}
       </div>
 
       {/* Email + Phone row */}
@@ -153,8 +159,14 @@ export default function ContactForm() {
             onChange={handleChange}
             className={inputClasses('email')}
             placeholder="Your email"
+            aria-invalid={!!errors.email}
+            aria-describedby={errors.email ? 'email-error' : undefined}
           />
-          {errors.email && <p className="mt-1.5 text-sm font-body text-red-500">{errors.email}</p>}
+          {errors.email && (
+            <p id="email-error" className="mt-1.5 text-sm font-body text-red-500">
+              {errors.email}
+            </p>
+          )}
         </div>
 
         <div>
@@ -169,8 +181,14 @@ export default function ContactForm() {
             onChange={handleChange}
             className={inputClasses('phone')}
             placeholder="(555) 123-4567"
+            aria-invalid={!!errors.phone}
+            aria-describedby={errors.phone ? 'phone-error' : undefined}
           />
-          {errors.phone && <p className="mt-1.5 text-sm font-body text-red-500">{errors.phone}</p>}
+          {errors.phone && (
+            <p id="phone-error" className="mt-1.5 text-sm font-body text-red-500">
+              {errors.phone}
+            </p>
+          )}
         </div>
       </div>
 
@@ -179,7 +197,7 @@ export default function ContactForm() {
         <label htmlFor="message" className="block font-body text-sm font-medium text-bark-500 mb-1.5">
           Project Details <span className="text-terra-400">*</span>
         </label>
-        <p className="font-body text-xs text-bark-200 mb-2">
+        <p id="message-hint" className="font-body text-xs text-bark-400 mb-2">
           Include details like area size, current condition, desired features, and timeline.
         </p>
         <textarea
@@ -190,8 +208,14 @@ export default function ContactForm() {
           onChange={handleChange}
           className={inputClasses('message')}
           placeholder="Tell us about your landscape project..."
+          aria-invalid={!!errors.message}
+          aria-describedby={errors.message ? 'message-hint message-error' : 'message-hint'}
         />
-        {errors.message && <p className="mt-1.5 text-sm font-body text-red-500">{errors.message}</p>}
+        {errors.message && (
+          <p id="message-error" className="mt-1.5 text-sm font-body text-red-500">
+            {errors.message}
+          </p>
+        )}
       </div>
 
       {/* Submit */}
@@ -214,15 +238,23 @@ export default function ContactForm() {
         )}
       </button>
 
-      {/* Status messages */}
+      {/* Status messages — live regions so assistive tech announces them */}
       {status === 'success' && (
-        <div className="p-4 bg-sage-50 border border-sage-200 text-forest-700 rounded-xl font-body text-sm">
+        <div
+          role="status"
+          aria-live="polite"
+          className="p-4 bg-sage-50 border border-sage-200 text-forest-700 rounded-xl font-body text-sm"
+        >
           Thank you for your message! We'll get back to you soon.
         </div>
       )}
 
       {status === 'error' && (
-        <div className="p-4 bg-red-50 border border-red-200 text-red-700 rounded-xl font-body text-sm">
+        <div
+          role="alert"
+          aria-live="assertive"
+          className="p-4 bg-red-50 border border-red-200 text-red-700 rounded-xl font-body text-sm"
+        >
           There was an error sending your message. Please try again.
         </div>
       )}

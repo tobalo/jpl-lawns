@@ -1,4 +1,3 @@
-import React from 'react';
 import ContactForm from './ContactForm';
 import { Mail, Instagram, Phone, MapPin } from 'lucide-react';
 import { Reveal } from './Reveal';
@@ -16,7 +15,7 @@ export default function Contact() {
               Contact Us
             </h2>
             <div className="mt-5 mx-auto w-12 h-px bg-terra-300" />
-            <p className="font-body text-base sm:text-lg text-bark-300 max-w-xl mx-auto mt-5">
+            <p className="font-body text-base sm:text-lg text-bark-400 max-w-xl mx-auto mt-5">
               Ready to transform your outdoor space? Get in touch for a free consultation.
             </p>
           </div>
@@ -98,7 +97,7 @@ export default function Contact() {
 
               {/* Decorative quote */}
               <div className="mt-12 pt-8 border-t border-white/10">
-                <p className="font-display text-lg italic text-white/40 leading-relaxed">
+                <p className="font-display text-lg italic text-white/65 leading-relaxed">
                   "Creating beautiful, sustainable landscapes since 2016."
                 </p>
               </div>

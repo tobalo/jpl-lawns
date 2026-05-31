@@ -70,6 +70,10 @@ function BeforeAfterSlider({
   const containerRef = useRef<HTMLDivElement>(null);
   const clipRef = useRef<HTMLDivElement>(null);
   const handleRef = useRef<HTMLDivElement>(null);
+  const pctRef = useRef(50);
+  // React state only drives aria-valuenow; the visual position is updated
+  // directly on the DOM (pctRef + style) for jank-free dragging.
+  const [pct, setPct] = useState(50);
 
   const getPercent = useCallback((clientX: number) => {
     const el = containerRef.current;
@@ -79,6 +83,7 @@ function BeforeAfterSlider({
   }, []);
 
   const updateSlider = useCallback((percent: number) => {
+    pctRef.current = percent;
     if (clipRef.current) {
       clipRef.current.style.clipPath = `inset(0 ${100 - percent}% 0 0)`;
     }
@@ -87,12 +92,22 @@ function BeforeAfterSlider({
     }
   }, []);
 
+  // Move the slider and sync React state (for assistive tech) after a
+  // settled interaction (click, keypress, or drag end).
+  const commit = useCallback(
+    (percent: number) => {
+      updateSlider(percent);
+      setPct(percent);
+    },
+    [updateSlider]
+  );
+
   const handleClick = useCallback(
     (e: React.MouseEvent) => {
       if ((e.target as HTMLElement).closest('[data-slider-handle]')) return;
-      updateSlider(getPercent(e.clientX));
+      commit(getPercent(e.clientX));
     },
-    [getPercent, updateSlider]
+    [getPercent, commit]
   );
 
   const handleDragStart = useCallback(
@@ -103,6 +118,7 @@ function BeforeAfterSlider({
 
       const onMove = (ev: PointerEvent) => updateSlider(getPercent(ev.clientX));
       const onUp = () => {
+        setPct(pctRef.current);
         target.removeEventListener('pointermove', onMove);
         target.removeEventListener('pointerup', onUp);
         target.removeEventListener('pointercancel', onUp);
@@ -113,6 +129,34 @@ function BeforeAfterSlider({
       target.addEventListener('pointercancel', onUp);
     },
     [getPercent, updateSlider]
+  );
+
+  const handleKeyDown = useCallback(
+    (e: React.KeyboardEvent) => {
+      const step = e.shiftKey ? 10 : 5;
+      let next: number | null = null;
+      switch (e.key) {
+        case 'ArrowLeft':
+        case 'ArrowDown':
+          next = pctRef.current - step;
+          break;
+        case 'ArrowRight':
+        case 'ArrowUp':
+          next = pctRef.current + step;
+          break;
+        case 'Home':
+          next = 3;
+          break;
+        case 'End':
+          next = 97;
+          break;
+        default:
+          return;
+      }
+      e.preventDefault();
+      commit(Math.max(3, Math.min(97, next)));
+    },
+    [commit]
   );
 
   return (
@@ -151,7 +195,7 @@ function BeforeAfterSlider({
       <div
         ref={handleRef}
         data-slider-handle
-        className="absolute top-0 bottom-0 z-20 cursor-col-resize"
+        className="absolute top-0 bottom-0 z-20 cursor-col-resize rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-forest-900"
         style={{
           left: '50%',
           transform: 'translateX(-50%)',
@@ -159,8 +203,14 @@ function BeforeAfterSlider({
           touchAction: 'none',
         }}
         onPointerDown={handleDragStart}
+        onKeyDown={handleKeyDown}
         role="slider"
-        aria-label="Drag to compare before and after"
+        aria-label={`Before-and-after comparison for ${label}. Use the left and right arrow keys to reveal more of the before or after image.`}
+        aria-orientation="horizontal"
+        aria-valuemin={0}
+        aria-valuemax={100}
+        aria-valuenow={Math.round(pct)}
+        aria-valuetext={`${Math.round(pct)}% of the before image shown`}
         tabIndex={0}
       >
         <div className="absolute left-1/2 top-0 bottom-0 w-0.5 -translate-x-1/2 bg-white shadow-[0_0_10px_rgba(0,0,0,0.35)]" />
@@ -232,7 +282,7 @@ export default function Projects() {
                 Community Entrance &amp; Common Areas
               </span>
             </div>
-            <p className="font-body text-cream-300/50 max-w-3xl">
+            <p className="font-body text-cream-300/70 max-w-3xl">
               Complete landscape renovation of subdivision entrance signs, roundabout planters,
               and median islands — transforming bare mulch beds into vibrant, professionally
               designed plantings.
@@ -296,7 +346,7 @@ export default function Projects() {
                     {item.name}
                   </h4>
                   <BeforeAfterSlider before={item.before} after={item.after} label={item.name} lazy />
-                  <p className="font-body text-sm text-cream-300/40 mt-3 line-clamp-3">
+                  <p className="font-body text-sm text-cream-300/70 mt-3 line-clamp-3">
                     {item.description}
                   </p>
                 </div>

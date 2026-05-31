@@ -1,3 +1,15 @@
+# Netlify build settings.
+# Routing lives in public/_redirects and security/cache headers in public/_headers
+# (both are copied verbatim into the publish directory at build time).
+#
+# Netlify Forms note: the contact form is detected from /__forms.html and the
+# React form posts via AJAX to /__forms.html — a real static file, so the SPA
+# catch-all in _redirects never shadows the POST and Netlify's form handler
+# processes the submission.
+
 [build]
   command = "npm run build"
   publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"

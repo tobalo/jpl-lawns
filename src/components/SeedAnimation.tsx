@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import { useRef, useState, useEffect } from 'react';
 
 /* ── Palette (matches tailwind.config) ─────────────────────────── */
 const SAGE_4 = '#8B9E7E';

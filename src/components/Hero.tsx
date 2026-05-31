@@ -1,4 +1,3 @@
-import React from 'react';
 import { Leaf, ChevronDown } from 'lucide-react';
 
 export default function Hero() {
@@ -47,7 +46,7 @@ export default function Hero() {
         </h1>
 
         {/* Subtext */}
-        <p className="font-body text-base sm:text-lg text-bark-300 leading-relaxed max-w-lg mx-auto mb-10 animate-fade-in-up anim-delay-300">
+        <p className="font-body text-base sm:text-lg text-bark-400 leading-relaxed max-w-lg mx-auto mb-10 animate-fade-in-up anim-delay-300">
           Transform your outdoor space into a stunning sanctuary with
           expert design, meticulous care, and sustainable solutions for DFW homes and businesses.
         </p>

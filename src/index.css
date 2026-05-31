@@ -65,6 +65,25 @@
   pointer-events: none;
 }
 
+/* ── Scroll reveal (progressive enhancement) ─────────────────── */
+/* Visible by default so prerendered HTML, no-JS visitors, and       */
+/* crawlers always see content. Only when JS is active (html.js) do   */
+/* items start hidden and fade in once scrolled into view.           */
+
+.reveal {
+  transition: opacity 700ms ease-out, transform 700ms ease-out;
+}
+
+.js .reveal {
+  opacity: 0;
+  transform: translateY(2rem);
+}
+
+.js .reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* ── Swiper overrides ────────────────────────────────────────── */
 
 .swiper-pagination-bullet {
@@ -83,4 +102,24 @@
 .swiper-button-prev::after,
 .swiper-button-next::after {
   @apply hidden;
+}
+
+/* ── Respect reduced-motion preference ───────────────────────── */
+/* Neutralizes looping/auto animations (hero float, bounce, the   */
+/* seed→tree SVG, scroll-reveal transitions) for users who opt    */
+/* out of motion. Swiper autoplay is gated separately in JS.      */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
 }

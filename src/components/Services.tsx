@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   Trees,
   Sprout,
@@ -68,7 +67,7 @@ export default function Services() {
                 <h3 className="font-display text-xl sm:text-2xl font-semibold text-bark-600 mb-2">
                   {service.title}
                 </h3>
-                <p className="font-body text-sm sm:text-base text-bark-300 leading-relaxed">
+                <p className="font-body text-sm sm:text-base text-bark-400 leading-relaxed">
                   {service.description}
                 </p>
               </div>
